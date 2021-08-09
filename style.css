@@ -1,0 +1,14 @@
+body {
+    background-color: green;
+    
+    
+}
+div {
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 150px;
+
+}
