@@ -1,41 +1,42 @@
 class Timer  {
-    constructor(h,m,s) {
+    constructor(h, m, s) {
       this.h = h;
       this.m = m;
       this.s = s;
+      this.div = document.querySelector('div'); 
     }
-
     render() {
       let now = new Date();
-      let div = document.querySelector('div');
-      this.h = now.getHours().toString();
-      this.m = now.getMinutes().toString();
-      this.s = now.getSeconds().toString();
+      let h = now.getHours().toString();
+      let m = now.getMinutes().toString();
+      let s = now.getSeconds().toString();
 
-      if (this.h.length < 2) {
-        this.h = '0' + this.h;
+      if (h < 10) {
+        h = '0' + h;
       }
-      if (this.m.length < 2) {
-        this.m = '0' + this.m;
+      if (m < 10) {
+        m = '0' + m;
       }
-      if (this.s.length < 2) {
-        this.s = '0' + this.s;
+      if (s < 10) {
+        s = '0' + s;
       }
-      if (div.classList.contains('hidden')) {
-        div.innerHTML = this.h + ':' + this.m;
+      if (this.div.classList.contains('hidden')) {
+        this.div.innerHTML = h + ':' + m;
       } else {
-        div.innerHTML = this.h + ':' + this.m + ':' + this.s;
-      }
-
-      div.addEventListener('click', (event) => {
-        event.target.classList.toggle('hidden');
+        this.div.innerHTML = h + ':' + m + ':' + s;
+      } 
+    }
+    shotLong() {
+      this.div.addEventListener('click', (event) => {
+      event.target.classList.toggle('hidden'); 
       }); 
     }
 }
 
-let clockNow = new Timer;
-
+let clockNow = new Timer('h','m','s');
 setInterval(() => {
   clockNow.render(); 
 }, 100);
-  
+clockNow.shotLong();  
+
+
